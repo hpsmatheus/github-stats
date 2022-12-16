@@ -1,10 +1,11 @@
+import { Injectable } from '@nestjs/common';
 import axios from 'axios';
-import DateUtil from 'src/core/util/date.util';
+import DateUtil from '../core/util/date.util';
 import GetCommitParamsDto from '../typings/commit/get-commit.params.dto';
-import { GitHubClientCommitResponse } from '../typings/github-client/github-client-commit.response';
-const authorization =
-  'Bearer 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';
+import { GitHubClientCommitResponse } from '../typings/github-client/github-client-commit.response.dto';
+const authorization = 'Bearer ';
 
+@Injectable()
 export default class GitHubClient {
   private get baseUrl(): string {
     return 'https://api.github.com';

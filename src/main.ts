@@ -10,7 +10,7 @@ async function bootstrap(): Promise<void> {
   app.useGlobalPipes(new ApiValidationPipe());
 
   const options = new DocumentBuilder()
-    .setTitle('App title')
+    .setTitle('GitHub Stats')
     .setDescription('Backend Engineer Challenge')
     .build();
   const document = SwaggerModule.createDocument(app, options);
