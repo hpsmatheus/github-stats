@@ -1,7 +1,12 @@
+import { IsString } from 'class-validator';
+
 export default class GetCommitParamsDto {
+  @IsString()
   repoPath: string;
 
-  initialDate: Date;
+  @IsString()
+  initialDate: string;
 
-  finalDate: Date;
+  @IsString()
+  finalDate: string;
 }
