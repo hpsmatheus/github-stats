@@ -3,8 +3,7 @@ import axios from 'axios';
 import DateUtil from '../core/util/date.util';
 import GetCommitParamsDto from '../typings/commit/get-commit.params.dto';
 import { GitHubClientCommitResponse } from '../typings/github-client/github-client-commit.response.dto';
-const authorization = 'Bearer ';
-
+import { authorization } from './github-authorization';
 @Injectable()
 export default class GitHubClient {
   private get baseUrl(): string {
