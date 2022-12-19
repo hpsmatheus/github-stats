@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import GitHubClient from 'src/clients/github.client';
+import GitHubClient from '../../clients/github.client';
 import CommitController from './commit.controller';
 import CommitService from './commit.service';
 
