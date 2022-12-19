@@ -77,8 +77,7 @@ The API design follows the basic Nest.js structure with modules, controllers and
 ## Improvements
 
 **Interaction with GitHub API**: a personal token with read-only permission to public repos
-is being used to interact with the GitHub API. As is necessary to generate a bundle
-file, the token is hard coded on a local file (not commited to GitHub repo).
+is being used to interact with the GitHub API.
 A better solution here would be having this token stored in a secrets manager or in a vault, and in the local environment using a environment variable.
 
 **Performance**: limiting the periods for searches or receiving pagination parameters in the backend could avoid performance issues.

@@ -4,10 +4,11 @@ import Constants from '../../constants';
 import axios from 'axios';
 import { gitHubClientCommitResponseMock } from '../../mocks/clients/github-client-commit.response.mock';
 import DateUtil from '../../../src/core/util/date.util';
-import { authorization } from '../../../src/clients/github-authorization';
 
 jest.setTimeout(900000);
 describe('GitHub Client', () => {
+  process.env.GITHUB_API_KEY = 'github-api-key';
+
   const gitHubClient = new GitHubClient();
   beforeEach(() => {
     jest
@@ -29,7 +30,7 @@ describe('GitHub Client', () => {
     expect(axios.get).toHaveBeenCalledWith(
       `https://api.github.com/repos/${Constants.anyRepoPath}/commits`,
       {
-        headers: { authorization },
+        headers: { authorization: 'github-api-key' },
         params: {
           page: 2,
           per_page: 100,
