@@ -17,6 +17,10 @@ $ npm install
 ```
 
 ```bash
+$ create a .env file in the root of the project with a variable named GITHUB_API_KEY. The value will be sent by Turtle platform.
+```
+
+```bash
 $ npm run start:dev
 ```
 
