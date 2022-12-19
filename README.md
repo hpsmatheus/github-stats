@@ -1,11 +1,10 @@
-## Backend Challenge API
+## GitHub Stats
 
-Tech Stack: [Node.js](https://nodejs.org/en/docs/), [Typescript](https://www.typescriptlang.org/docs/), [Nest.js](https://docs.nestjs.com/), [PostgreSQL](https://www.postgresql.org/docs/)
+Tech Stack: [Node.js](https://nodejs.org/en/docs/), [Typescript](https://www.typescriptlang.org/docs/), [Nest.js](https://docs.nestjs.com/)
 
 ## Requirements
 
 - Node v16.13.2 or higher
-- Docker and docker compose
 
 ## Run Application Locally
 
@@ -15,29 +14,6 @@ $ git clone
 
 ```bash
 $ npm install
-```
-
-```bash
-$ docker compose up
-this will start postgres and adminer on local containers
-adminer is lighwheight DBMS that runs on browser
-```
-
-```bash
--> access adminer on your localhost:8080
-
-* server: db
-* username: pgsql
-* password: pgsql
-* leave the database field empty
-(you may change these values on docker-compose.yml following your preferences)
-
--> create a database with the name of your preference and leave it empty
-```
-
-```bash
--> create a .env file on project root following .env.example model and fill
-the placeholders with the same values above
 ```
 
 ```bash
@@ -73,24 +49,38 @@ $ npm run format
 
 ## Folder Structure
 
+The API design follows the basic Nest.js structure with modules, controllers and services. Clients are used to interact with external APIs. Nest.js interceptors are used to monitor the request flow, catch errors and log operations. Nest.js validation pipes are used to validate input to API endpoints.
+
 ```
 > src
+  > clients                         (clients to interact with external APIs, ex: GitHub API)
   > core                            (files that are used all over the API)
      > error                        (files to do the error handling and format API errors)
      > request-interceptor          (Nest.js interceptor to catch errors and do API logging)
      > api-validation.pipe.ts       (Nest.js pipe to validate DTOs)
      > swagger-response.ts          (abstraction to add and reuse swagger responses)
 
-  > modules
+  > modules             (the modules of the application separated by domain, ex.: commits)
 
 
   > typings             (contains all the API typings)
+  > main.ts             (application entrypoint)
 
-  > test
-    > integration      (integration tests mocking the database)
-    > mocks            (mocks used all over the tests using builder pattern)
-    > unit             (unit tests)
-
+> test
+  > integration      (integration tests mocking github external api)
+  > mocks            (mocks used all over the tests)
+  > unit             (unit tests)
 
 
 ```
+
+## Improvements
+
+**Interaction with GitHub API**: a personal token with read-only permission to public repos
+is being used to interact with the GitHub API. As is necessary to generate a bundle
+file, the token is hard coded on a local file (not commited to GitHub repo).
+A better solution here would be having this token stored in a secrets manager or in a vault, and in the local environment using a environment variable.
+
+**Performance**: limiting the periods for searches or receiving pagination parameters in the backend could avoid performance issues.
+
+**Dates**: validating the date formats could avoid internal errors.
